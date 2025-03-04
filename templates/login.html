@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вхід</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+{% csrf_token %}
+    <div class="login-container">
+        <h2>Вхід</h2>
+        <form action="/login/" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Логін" required>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <button type="submit">Увійти</button>
+        </form>
+        <p>Немає акаунту? <a href="/register">Зареєструватися</a></p>
+    </div>
+</body>
+</html>

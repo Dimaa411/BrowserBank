@@ -1,0 +1,26 @@
+{% load static %}
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Головна</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Ласкаво просимо!</h1>
+        <nav>
+            <a href="/">Головна</a>
+            <a href="/login">Вхід</a>
+            <a href="/register">Реєстрація</a>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h2>TOPBANK</h2>
+            <p>Вітаємо вас в нашому банку! Увійдіть або зареєструйтеся, щоб отримати доступ до всіх можливостей.</p>
+            <a href="/login" class="btn">Увійти</a>
+        </section>
+    </main>
+</body>
+</html>
