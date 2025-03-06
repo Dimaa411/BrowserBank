@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="{% static 'login_style.css' %}">
 </head>
 <body>
+<header>
+        <h1>Реєстрація в TOPBANK</h1>
+    </header>
     <div class="login-container">
         <h2>Вхід</h2>
         <form action="/login/" method="POST">
@@ -21,6 +24,8 @@
         {% endif %}
 
         <p class="NoAccount">Немає акаунту? <a href="/register">Зареєструватися</a></p>
+        <p class="Password-ress">Забули пароль? <a href="/reset_password">Відновити</a></p>
     </div>
+
 </body>
 </html>
