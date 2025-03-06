@@ -1,0 +1,64 @@
+/* Стилі для контейнера */
+.login-container {
+    width: 300px;
+    margin: 0 auto;
+
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    text-align: center;
+    padding-right: 40px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+/* Стилі для input полів */
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Стиль для кнопки */
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #45a049;
+}
+
+/* Стиль для помилок */
+.error-message {
+    font-size: 14px;
+    text-align: center;
+    color: red;
+    margin-top: 10px;
+}
+
+/* Стиль для повідомлення про відсутність акаунту */
+.NoAccount {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.NoAccount a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.NoAccount a:hover {
+    text-decoration: underline;
+}

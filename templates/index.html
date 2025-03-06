@@ -8,18 +8,31 @@
 </head>
 <body>
     <header>
-        <h1>Ласкаво просимо!</h1>
+        <h1>
+            Ласкаво просимо,
+            {% if user.is_authenticated %}
+                {% if user.name %}
+                    {{ user.name }}
+                {% else %}
+                    {{ user.username }}
+                {% endif %}
+            {% else %}
+                Гість
+            {% endif %}
+            !
+        </h1>
         <nav>
             <a href="/">Головна</a>
             <a href="/login">Вхід</a>
             <a href="/register">Реєстрація</a>
+            <a href="/logout">Вихід</a>
         </nav>
     </header>
     <main>
         <section class="hero">
             <h2>TOPBANK</h2>
             <p>Вітаємо вас в нашому банку! Увійдіть або зареєструйтеся, щоб отримати доступ до всіх можливостей.</p>
-            <a href="/login" class="btn">Увійти</a>
+            <a href="/login" class="btn-log">Увійти</a>
         </section>
     </main>
 </body>

@@ -21,15 +21,25 @@ input, button {
     border-radius: 5px;
     border: 1px solid #ccc;
 }
-button, .btn {
-    background: #007bff;
-    color: white;
+button, .btn-log {
+    color: black;
     border: none;
-    cursor: pointer;
+    font-weight: bold;
+    padding: 2px;
 }
-button:hover, .btn:hover {
+button, .btn-log {
+    transition: transform 0.2s ease-in-out;
+}
+
+button:hover, .btn-log:hover {
     background: #0056b3;
+    color: white;
+    transform: scale(0.95); /* Зменшує кнопку на 5% */
 }
+
+
+
+
 header {
     background: #333;
     color: white;
@@ -39,4 +49,8 @@ nav a {
     color: white;
     margin: 0 15px;
     text-decoration: none;
+}
+a:hover, a:hover {
+    background:#5a5a58;
+    padding:10px;
 }
