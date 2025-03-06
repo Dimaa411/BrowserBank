@@ -1,0 +1,35 @@
+[33mcommit 727901f9bbeaed78a190c93ab38768b7dd96df52[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: Dimaa411a <dimaandreiko8888@gmail.com>
+Date:   Thu Mar 6 16:23:47 2025 +0200
+
+    Add .env to .gitignore
+
+[33mcommit 767fcbcd6198b36495e7d1ec90047b401866b610[m
+Author: Dimaa411a <dimaandreiko8888@gmail.com>
+Date:   Thu Mar 6 16:19:10 2025 +0200
+
+    Added .env to .gitignore
+
+[33mcommit 66c6050b6bd61c4d633de27e1dc091bcc621b25b[m
+Author: Dimaa411a <dimaandreiko8888@gmail.com>
+Date:   Thu Mar 6 16:12:03 2025 +0200
+
+    added new login, logout functinal with nice interface
+
+[33mcommit 7ada8cc4ee84e610751fe0c1acda580593b7be4c[m
+Author: Dimaa411a <dimaandreiko8888@gmail.com>
+Date:   Tue Mar 4 23:32:30 2025 +0200
+
+    Add .env to .gitignore
+
+[33mcommit 591f45c09ad20210aff8d82dd2a50a5a7d2da2f2[m
+Author: Dimaa411a <dimaandreiko8888@gmail.com>
+Date:   Tue Mar 4 23:31:25 2025 +0200
+
+    new login, etc functional
+
+[33mcommit d49d603f45e5f407403801d98861fca83a6ed7e0[m
+Author: Andreiko Dmytro <Dimaandreiko9999@gmail.com>
+Date:   Tue Mar 4 19:45:32 2025 +0200
+
+    Main project with connected routes
