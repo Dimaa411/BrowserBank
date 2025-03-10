@@ -24,6 +24,16 @@ input, button {
     border-radius: 35px;
     text-decoration: none;
 }
+/* static/styles.css */
+.hero p {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.hero strong {
+    color: #4CAF50;
+    font-weight: bold;
+}
 
 /* Для кнопок */
 button, .btn-log {

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Переказ коштів</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'static_transactions/transfer_style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- Ваше меню навігації -->
+        </nav>
+    </header>
+
+    <main>
+        <h2>Переказ коштів</h2>
+
+        <!-- Виведення повідомлень -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                <label for="receiver">Отримувач:</label>
+                <input type="text" id="receiver" name="receiver" required>
+            </div>
+            <div>
+                <label for="amount">Сума:</label>
+                <input type="number" id="amount" name="amount" required min="0" step="0.01">
+            </div>
+            <button type="submit">Перевести</button>
+        </form>
+    </main>
+
+    <section class="transaction-history">
+    <h2 class="history_text">Історія транзакцій</h2>
+    <ul>
+        {% for transaction in user_transactions %}
+            <li>{{ transaction.date }}: {{ transaction.sender.username }} → {{ transaction.receiver.username }} | {{ transaction.amount }} грн</li>
+        {% empty %}
+            <li>Історія порожня</li>
+        {% endfor %}
+    </ul>
+</section>
+</body>
+</html>

@@ -10,44 +10,38 @@ from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.views import PasswordResetCompleteView
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from transactions.models import Account
 
-# Представлення для введення email
+@receiver(post_save, sender=User)
+def create_user_account(sender, instance, created, **kwargs):
+    if created:
+        Account.objects.create(user=instance)
+
 def password_reset(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         try:
-            # Перевірка на наявність користувача з таким email
             user = User.objects.get(email=email)
-
-            # Генерація токену для відновлення пароля
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(str(user.pk).encode())
+            reset_link = f'http://{get_current_site(request).domain}/reset/{uid}/{token}/'
 
-            # Формуємо посилання для скидання пароля (https замість http)
-            reset_link = f'https://{get_current_site(request).domain}/reset/{uid}/{token}/'
-
-            # Створюємо повідомлення для email
             subject = 'Відновлення пароля'
             message = render_to_string('password_reset_email.html', {
                 'reset_link': reset_link,
                 'user': user
             })
-
-            # Надсилаємо email з посиланням для відновлення пароля
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])
 
-            # Перенаправляємо на сторінку підтвердження
             return redirect('password_reset_done')
 
         except User.DoesNotExist:
-            # Якщо email не знайдено, показуємо помилку
             return render(request, 'reset_password.html', {'error': 'Цей email не знайдено.'})
 
-    # Якщо запит GET, просто відображаємо форму
     return render(request, 'reset_password.html')
 
-
-# Представлення для скидання пароля за токеном
 def password_reset_confirm(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
@@ -60,19 +54,30 @@ def password_reset_confirm(request, uidb64, token):
             form = SetPasswordForm(user, request.POST)
             if form.is_valid():
                 form.save()
-                # Перенаправлення на головну сторінку після успішної зміни пароля
-                return redirect('main_page')  # Використовуйте ім'я вашого маршруту для головної сторінки
+                return redirect('main_page')
         else:
             form = SetPasswordForm(user)
 
         return render(request, 'password_reset_confirm.html', {'form': form})
     else:
-        return redirect('password_reset_invalid')  # Це можна реалізувати для обробки помилки, якщо токен недійсний.
+        return redirect('password_reset_invalid')
+
+
+from transactions.models import Account
 
 
 def index(request):
-    message = request.GET.get('message')
-    return render(request, 'index.html', {'message': message})
+    if request.user.is_authenticated:
+        try:
+            account = Account.objects.get(user=request.user)
+            balance = account.balance
+            print(f"Баланс для {request.user.username}: {balance}")
+        except Account.DoesNotExist:
+            balance = 0
+    else:
+        balance = 0
+
+    return render(request, 'index.html', {'balance': balance})
 
 
 def register_view(request):
@@ -100,7 +105,6 @@ def register_view(request):
 
     return render(request, "register.html")
 
-
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -110,24 +114,21 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect(f"/?message=Вітаємо вас, {User.username}")
+            return redirect(f"/?message=Вітаємо вас, {user.username}")
         else:
             return render(request, "login.html", {"error_message": "Невірний логін або пароль"})
 
     return render(request, "login.html")
 
-
 def logout_view(request):
     logout(request)
     return redirect('/')
-
 
 def some_view(request):
     if request.user.is_authenticated:
         return render(request, "dashboard.html")
     else:
         return HttpResponseRedirect("/login/")
-
 
 def password_reset_invalid(request):
     return render(request, 'password_reset_invalid.html')
