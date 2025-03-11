@@ -1,4 +1,4 @@
-/* styles for the layout */
+/* Стилі для макету */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -11,6 +11,59 @@ main {
     padding-right: 20px;
 }
 
+/* Стилі для контейнера балансу та кнопки */
+.balance-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px; /* Додаємо відступи для кращого вигляду */
+    width: 100%; /* Забезпечуємо, що елементи займають всю ширину */
+}
+
+.balance-container h1 {
+    margin: 0;
+}
+
+.btn-send {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-send:hover {
+    background-color: #45a049;
+}
+
+.btn-log {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-log:hover {
+    background-color: #0056b3;
+}
+
+/* Стилі для тексту балансу */
+.balance_text {
+    font-size: 20px;
+    background: lightgrey;
+    margin: 5px;
+    width: 200px;
+    padding: 10px; /* Додано для покращення вигляду */
+    text-align: center; /* Центрування тексту */
+}
+
+.history_text {
+    text-align: center;
+}
+
+/* Стилі для історії транзакцій */
 .transaction-history {
     width: 550px;
     padding: 15px;
@@ -37,6 +90,7 @@ main {
     font-size: 14px;
 }
 
+/* Стилі для повідомлень */
 .messages {
     margin-bottom: 15px;
 }
@@ -57,6 +111,7 @@ main {
     color: #721c24;
 }
 
+/* Стилі для форми */
 form div {
     margin-bottom: 10px;
 }
@@ -86,7 +141,33 @@ button {
 button:hover {
     background-color: #45a049;
 }
-
-.history_text{
-    text-align:center;
+/* Стилі для контейнера балансу та кнопки */
+.balance-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
 }
+
+.btn-send {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-send:hover {
+    background-color: #45a049;
+}
+
+.balance_text {
+    font-size: 20px;
+    background: lightgrey;
+    margin: 5px;
+    padding: 1px;
+    text-align: center;
+    width: 200px;
+}
+

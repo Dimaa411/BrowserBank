@@ -10,14 +10,13 @@
 <body>
     <header>
         <nav>
-            <!-- Ваше меню навігації -->
+
         </nav>
     </header>
 
     <main>
         <h2>Переказ коштів</h2>
 
-        <!-- Виведення повідомлень -->
         {% if messages %}
             <div class="messages">
                 {% for message in messages %}
@@ -36,19 +35,24 @@
                 <label for="amount">Сума:</label>
                 <input type="number" id="amount" name="amount" required min="0" step="0.01">
             </div>
-            <button type="submit">Перевести</button>
+
+            <!-- Контейнер для балансу та кнопки -->
+            <div class="balance-container">
+                <button type="submit" class="btn-send">Перевести</button>
+                <h1 class="balance_text">Ваш баланс: {{ user.account.balance }} грн</h1>
+            </div>
         </form>
     </main>
 
     <section class="transaction-history">
-    <h2 class="history_text">Історія транзакцій</h2>
-    <ul>
-        {% for transaction in user_transactions %}
-            <li>{{ transaction.date }}: {{ transaction.sender.username }} → {{ transaction.receiver.username }} | {{ transaction.amount }} грн</li>
-        {% empty %}
-            <li>Історія порожня</li>
-        {% endfor %}
-    </ul>
-</section>
+        <h2 class="history_text">Історія транзакцій</h2>
+        <ul>
+            {% for transaction in user_transactions %}
+                <li>{{ transaction.date }}: {{ transaction.sender.username }} → {{ transaction.receiver.username }} | {{ transaction.amount }} грн</li>
+            {% empty %}
+                <li>Історія порожня</li>
+            {% endfor %}
+        </ul>
+    </section>
 </body>
 </html>

@@ -1,10 +1,26 @@
+<!-- deposit.html -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поповнити депозит</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'static_transactions/deposite_style.css' %}">
 </head>
 <body>
-$END$
+    <h2>Поповнити депозит</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="amount">Сума депозиту:</label>
+        <input type="number" name="amount" id="amount" min="0.01" step="0.01" required>
+        <button type="submit">Поповнити</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
 </body>
 </html>

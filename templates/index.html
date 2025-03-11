@@ -23,8 +23,9 @@
         </h1>
         <nav>
             <a href="/">Головна</a>
-            <a href="/transactions/transfer">Транзакції</a>
             {% if user.is_authenticated %}
+            <a href="/transactions/transfer">Транзакції</a>
+                <a href="/transactions/deposit/">Депозит</a>
                 <a href="/logout">Вихід</a>
             {% else %}
                 <a href="/login">Вхід</a>
@@ -39,15 +40,14 @@
 
             {% if user.is_authenticated %}
                 {% if user.account %}
-                    <h1>Ваш баланс: {{ user.account.balance }} грн</h1>
+                    <div class="balance-container">
+                        <h1>Ваш баланс: {{ user.account.balance }} грн</h1>
+                    </div>
                 {% else %}
                     <p>Рахунок ще не створено.</p>
                 {% endif %}
             {% else %}
                 <p>Для перегляду балансу, будь ласка, увійдіть в систему.</p>
-            {% endif %}
-
-            {% if not user.is_authenticated %}
                 <a href="/login" class="btn-log">Увійти</a>
             {% endif %}
         </section>
