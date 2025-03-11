@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.views import PasswordResetCompleteView
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from transactions.models import Account
+from transactions.models import Account  
 
 @receiver(post_save, sender=User)
 def create_user_account(sender, instance, created, **kwargs):
