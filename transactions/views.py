@@ -60,9 +60,22 @@ def send_transaction_receipt(receiver_email, sender, receiver, amount):
         З повагою,  
         TOPBANK
     """
-    send_mail(subject, message, settings.EMAIL_HOST_USER, [receiver_email])
+    subject2 = "Квитанція про переказ коштів"
+    message2 = f"""
+            Шановний {sender.username},
 
-@login_required
+            Ви оформили переказ коштів користувачу {receiver.username}.
+
+            Сума: {amount} грн
+
+            Дякуємо за використання нашого сервісу!
+
+            З повагою,  
+            TOPBANK
+        """
+    send_mail(subject, message, settings.EMAIL_HOST_USER, [receiver_email])
+    send_mail(subject2, message2, settings.EMAIL_HOST_USER, [sender.email])
+
 
 def transfer_funds(request):
 
